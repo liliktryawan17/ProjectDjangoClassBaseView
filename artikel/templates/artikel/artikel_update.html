@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+{% block title %}
+ Update 
+{% endblock title %}
+
+{% block header %}
+<h1 style="text-align: center">Update Artikel</h1>
+<hr/>
+{% endblock header %} {% block contents %}
+
+<form method="POST">
+  {% csrf_token %}
+    <div class="mb-3">
+      <label for="{{form.judul.id_for_label}}" class="form-label">{{form.judul.label}}</label>
+      <input type="text" class="form-control" name="{{form.judul.name}}" maxlength="{{form.judul.max}}" required id="{{form.judul.id_for_label}}" value="{{form.judul.value}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="{{form.konten.id_for_label}}" class="form-label">{{form.konten.label}}</label>
+      <textarea class="form-control" name="{{form.konten.name}}" required id="{{form.konten.id_for_label}}" cols="30" rows="10">{{form.konten.value}}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="{{form.kategori.id_for_label}}" class="form-label">{{form.kategori.label}}</label>
+      <input type="text" class="form-control" name="{{form.kategori.name}}" maxlength="{{form.kategori.max}}" required id= "{{form.kategori.id_for_label}}" value="{{form.kategori.value}}">
+    </div>
+  <button type="Submit" class="btn btn-warning">Update</button>
+  <a href="{% url 'artikel:manage' %}" class="btn btn-dark">Kembali</a>
+</form>
+{% endblock contents %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Home 
+{% endblock title %} 
+
+{% block header %}
+<h1 style="text-align: center">Beranda</h1>
+<hr />
+{% endblock header %} 
+
+{% block contents %}
+<div class="row">
+  {% for artikel in lates_artikel %}
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{artikel.judul}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <a
+            style="text-decoration: none"
+            href="{% url 'artikel:category' artikel.kategori 1 %}"
+            >{{artikel.kategori}}</a
+          >
+        </h6>
+        <h6 class="card-text">{{artikel.published | date}}</h6>
+        <p class="card-text">{{artikel.konten | truncatewords:35}}</p>
+        <a
+          style="text-decoration: none"
+          href="{% url 'artikel:detail' artikel.slug %}"
+          class="card-link"
+          >Selengkapnya</a
+        >
+      </div>
+    </div>
+    <br />
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock contents %}
+

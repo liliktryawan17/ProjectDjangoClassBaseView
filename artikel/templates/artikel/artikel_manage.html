@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Manage
+{% endblock title %}
+
+
+{% block header %}
+    <h1 style="text-align: center;">Management Artikel</h1><hr>
+{% endblock header %}
+    
+    
+
+{% block contents %}
+<a href="{% url 'artikel:create' %}"><button type="button" class="btn btn-primary">Tambah Konten</button></a>
+<div class="mt-2">
+    <table class="table">
+        <thead class="table-primary">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Judul</th>
+                <th scope="col">Konten</th>
+                <th scope="col">Kategori</th>
+                <th colspan="3" style="text-align: center;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for artikel in manage_list %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{artikel.judul}}</td>
+                    <td>{{artikel.konten | truncatewords:10 }}</td>
+                    <td>{{artikel.kategori}}</td>
+                    <td><a href="{% url 'artikel:update' artikel.id %}"><button class="btn btn-warning">Edit</button></a></td>
+                    <td><a href="{% url 'artikel:delete' artikel.id %}"><button class="btn btn-danger">Hapus</button></a></td>
+                    <td><a href="{% url 'artikel:detail' artikel.slug %}"><button class="btn btn-primary">Detail</button></a></td>
+                </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock contents %}
+    
